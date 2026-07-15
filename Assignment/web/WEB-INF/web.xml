@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--           WELCOME FILE                  -->
+    <!-- ═══════════════════════════════════════ -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--   AUTH FILTER — protect user pages      -->
+    <!-- ═══════════════════════════════════════ -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>filter.AuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/cart</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/cart/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/checkout</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/order-success</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/order-history</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/profile</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/edit-profile</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/review</url-pattern>
+    </filter-mapping>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--   ADMIN FILTER — protect admin pages    -->
+    <!-- ═══════════════════════════════════════ -->
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--           ERROR PAGES                   -->
+    <!-- ═══════════════════════════════════════ -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error-500.jsp</location>
+    </error-page>
+
+</web-app>

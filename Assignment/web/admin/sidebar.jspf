@@ -1,0 +1,27 @@
+<%-- /admin/sidebar.jspf  — include vào mọi trang admin --%>
+<%@ page import="model.User" %>
+<%
+    String _path = request.getContextPath();
+    User   _me   = (User) session.getAttribute("loggedUser");
+    String _uri  = request.getServletPath();
+%>
+<div class="admin-sidebar">
+    <div class="sidebar-brand"><i class="fa-brands fa-atlassian"></i> &nbsp;LAVA</div>
+    <nav class="sidebar-nav">
+        <a href="<%= _path %>/admin"          class="<%= "/admin".equals(_uri) ? "active" : "" %>">
+            <i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="<%= _path %>/admin/products" class="<%= "/admin/products".equals(_uri)||"/admin/product-form".equals(_uri) ? "active" : "" %>">
+            <i class="fa-solid fa-shirt"></i> Products</a>
+        <a href="<%= _path %>/admin/orders"   class="<%= "/admin/orders".equals(_uri) ? "active" : "" %>">
+            <i class="fa-solid fa-box"></i> Orders</a>
+        <a href="<%= _path %>/admin/users"    class="<%= "/admin/users".equals(_uri) ? "active" : "" %>">
+            <i class="fa-solid fa-users"></i> Users</a>
+        <a href="<%= _path %>/admin/statistics">
+            <i class="fa-solid fa-chart-line"></i> Statistics</a>
+    </nav>
+    <div class="sidebar-footer">
+        <i class="fa-solid fa-circle-user"></i>
+        <%= _me != null ? _me.getUsername() : "" %>
+         | <a href="<%= _path %>/auth?action=logout" style="color:#666;">Logout</a>
+    </div>
+</div>
